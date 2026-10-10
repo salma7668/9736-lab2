@@ -1,6 +1,7 @@
+.PHONY: setup daemon restore
 setup:
 	mkdir -p malicious_dir
-daemon:
+daemon: setup
 	./antivirusd.sh $(DIR) malicious_dir $(INTERVAL)
-restore:
+restore: setup
 	./restore.sh $(DIR) malicious_dir

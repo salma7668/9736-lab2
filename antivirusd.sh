@@ -29,11 +29,11 @@ for file in "$monitor_dir"/*
 do
 filename=$(basename "$file")
 if [[ $file == *.exe || $file == *.bat || $file == *.vbs || $file == *.scr || $file == *.ps1 ]]; then 
-echo "$file is malicious and it is DELETED"
+echo "$(basename "$file") is malicious and it is DELETED"
 cp "$file" "$quarantine_dir"
 rm "$file"
-elif echo "$filename" | grep -qi "virus" || echo "$filename" | grep -qi "trojan" || echo "$filename" | grep -qi "malware" || echo "$filename" | grep -qi "worm" || echo "$filename" | grep -qi "ransomware"; then
-echo "$file is malicious and it is DELETED"
+elif grep -qi "virus" "$file" || grep -qi "trojan" "$file" || grep -qi "malware" "$file" || grep -qi "worm" "$file" || grep -qi "ransomware" "$file"; then
+echo "$(basename "$file") is malicious and it is DELETED"
 cp "$file" "$quarantine_dir"
 rm "$file"
 fi
