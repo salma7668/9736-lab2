@@ -27,6 +27,9 @@ ls -l "$monitor_dir" > directory-info.last
 scan_file() {
 for file in "$monitor_dir"/*
 do
+if [ ! -f "$file" ]; then
+    continue
+fi
 filename=$(basename "$file")
 if [[ $file == *.exe || $file == *.bat || $file == *.vbs || $file == *.scr || $file == *.ps1 ]]; then 
 echo "$(basename "$file") is malicious and it is DELETED"
